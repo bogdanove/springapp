@@ -1,4 +1,4 @@
-package ru.cib
+package ru.cib.springapp
 
 import javax.xml.bind.annotation.XmlAccessType
 import javax.xml.bind.annotation.XmlAccessorType

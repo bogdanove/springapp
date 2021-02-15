@@ -1,8 +1,8 @@
 package ru.cib.springapp
 
 
-import ru.cib.Person
-import ru.cib.Persons
+import ru.cib.springapp.Person
+import ru.cib.springapp.Persons
 import java.io.FileOutputStream
 import java.io.FileReader
 import java.io.IOException
