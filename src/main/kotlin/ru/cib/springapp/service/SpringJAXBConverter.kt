@@ -1,8 +1,8 @@
-package ru.cib.springapp
+package ru.cib.springapp.service
 
 
-import ru.cib.springapp.Person
-import ru.cib.springapp.Persons
+import ru.cib.springapp.entity.Person
+import ru.cib.springapp.entity.Persons
 import java.io.FileOutputStream
 import java.io.FileReader
 import java.io.IOException

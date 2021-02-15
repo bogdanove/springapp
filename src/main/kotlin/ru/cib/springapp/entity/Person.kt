@@ -1,8 +1,10 @@
-package ru.cib.springapp
+package ru.cib.springapp.entity
 
 
 
 
+import ru.cib.springapp.entity.Hobby
+import ru.cib.springapp.service.DateAdapter
 import java.util.*
 import javax.persistence.*
 import javax.xml.bind.annotation.*

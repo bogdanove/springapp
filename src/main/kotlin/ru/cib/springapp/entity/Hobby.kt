@@ -1,4 +1,4 @@
-package ru.cib.springapp
+package ru.cib.springapp.entity
 
 import javax.persistence.*
 import javax.xml.bind.annotation.XmlAccessType

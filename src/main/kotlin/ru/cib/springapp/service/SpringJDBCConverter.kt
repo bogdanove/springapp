@@ -1,4 +1,4 @@
-package ru.cib.springapp
+package ru.cib.springapp.service
 
 
 
@@ -7,9 +7,9 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.jdbc.support.GeneratedKeyHolder
 import org.springframework.stereotype.Service
-import ru.cib.springapp.Hobby
-import ru.cib.springapp.Person
-import ru.cib.springapp.Persons
+import ru.cib.springapp.entity.Hobby
+import ru.cib.springapp.entity.Person
+import ru.cib.springapp.entity.Persons
 
 
 @Service

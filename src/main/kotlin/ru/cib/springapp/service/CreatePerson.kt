@@ -2,7 +2,7 @@
 //
 //import org.springframework.context.annotation.Bean
 //import org.springframework.stereotype.Component
-//import ru.cib.springapp.Hobby
+//import ru.cib.springapp.entity.Hobby
 //import ru.cib.Person
 //import ru.cib.Persons
 //import java.util.*
