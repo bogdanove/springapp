@@ -3,6 +3,7 @@ package ru.cib.springapp.entity
 
 
 
+import org.springframework.data.jpa.domain.AbstractPersistable_.id
 import ru.cib.springapp.entity.Hobby
 import ru.cib.springapp.service.DateAdapter
 import java.util.*
@@ -15,24 +16,18 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "person")
-class Person(
-    @XmlTransient
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    var id: Long? = 0,
+class Person: BasePerson() {
 
     @XmlElement
-    var name: String? = null,
+    var name: String? = null
 
     @XmlJavaTypeAdapter(DateAdapter::class)
-    var birthday: Date? = null,
+    var birthday: Date? = null
 
     @XmlElementWrapper(name = "hobbies")
     @XmlElement(name = "hobby")
     @OneToMany(mappedBy = "person", cascade = [CascadeType.ALL], orphanRemoval = true)
     var hobbies: MutableList<Hobby>? = null
-
-) {
 
 
     override fun toString(): String {

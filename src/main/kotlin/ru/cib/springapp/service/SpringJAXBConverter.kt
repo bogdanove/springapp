@@ -29,7 +29,7 @@ class SpringJAXBConverter() {
 
         val list = mutableListOf<Person>()
 
-        val persFromFile = un.unmarshal(FileReader(fileName)) as Persons
+        val persFromFile = un.unmarshal(FileReader("src/main/resources/File/file.xml")) as Persons
         persFromFile.persons?.forEach {
             list.add(it)
 
