@@ -16,7 +16,12 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "person")
-class Person: BasePerson() {
+class Person {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @XmlTransient
+    var id: Long? = 0
 
     @XmlElement
     var name: String? = null
@@ -26,7 +31,7 @@ class Person: BasePerson() {
 
     @XmlElementWrapper(name = "hobbies")
     @XmlElement(name = "hobby")
-    @OneToMany(mappedBy = "person", cascade = [CascadeType.ALL], orphanRemoval = true)
+    @OneToMany(mappedBy = "person", cascade = [CascadeType.ALL], orphanRemoval = true, fetch = FetchType.EAGER)
     var hobbies: MutableList<Hobby>? = null
 
 

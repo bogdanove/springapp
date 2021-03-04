@@ -1,9 +1,8 @@
 package ru.cib.springapp.entity
 
+
 import javax.persistence.*
-import javax.xml.bind.annotation.XmlAccessType
-import javax.xml.bind.annotation.XmlAccessorType
-import javax.xml.bind.annotation.XmlTransient
+import javax.xml.bind.annotation.*
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
@@ -11,21 +10,23 @@ import javax.xml.bind.annotation.XmlTransient
 class Hobby {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @XmlTransient var id: Long = 0
 
     @XmlTransient
     @Column(name = "person_id")
-    var personId: Long = 0
+    var personId: Long? = null
+
     var complexity: Int = 0
 
     var hobby_name: String = "name"
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "person_id", insertable = false, updatable = false)
+    @XmlTransient
     val person: Person? = null
 
     override fun toString(): String {
-        return "id: $id, personId: $personId, complexity: $complexity, hobby name is: $hobby_name"
+        return "id: $id, complexity: $complexity, hobby name is: $hobby_name"
     }
 }

@@ -8,7 +8,7 @@
 //import org.springframework.jdbc.support.GeneratedKeyHolder
 //import org.springframework.stereotype.Service
 //import ru.cib.springapp.entity.Hobby
-//import ru.cib.springapp.entity.Person
+//import Person
 //import ru.cib.springapp.entity.Persons
 //
 //
