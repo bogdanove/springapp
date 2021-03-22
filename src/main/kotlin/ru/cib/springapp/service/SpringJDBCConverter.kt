@@ -9,7 +9,7 @@
 //import org.springframework.stereotype.Service
 //import ru.cib.springapp.entity.Hobby
 //import Person
-//import ru.cib.springapp.entity.Persons
+//import ru.cib.springapp.model.Persons
 //
 //
 //@Service
