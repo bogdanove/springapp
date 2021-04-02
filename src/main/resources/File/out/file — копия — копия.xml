@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persons>
+    <person>
+        <name>Iosif Kabzonsky</name>
+        <birthday>1966-03-04</birthday>
+        <hobbies>
+            <hobby>
+                <complexity>66</complexity>
+                <hobby_name>Singing</hobby_name>
+            </hobby>
+        </hobbies>
+    </person>
+    <person>
+        <hobbies>
+            <hobby>
+                <complexity>11</complexity>
+                <hobby_name>Ballet Dancer</hobby_name>
+            </hobby>
+            <hobby>
+                <complexity>8</complexity>
+                <hobby_name>Author</hobby_name>
+            </hobby>
+        </hobbies>
+    </person>
+</persons>
