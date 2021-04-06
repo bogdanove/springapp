@@ -1,46 +1,37 @@
 package ru.cib.springapp.service
 
-import org.springframework.context.annotation.Bean
+
 import org.springframework.stereotype.Service
 import ru.cib.springapp.entity.Person
-import ru.cib.springapp.entity.Persons
-import ru.cib.springapp.model.PersonsXml
+import ru.cib.springapp.model.PersonXml
 import ru.cib.springapp.repository.PersonRepository
 import ru.cib.springapp.utils.toPersonXml
+import java.io.File
 
 
 @Service("db")
 class PersonController(
         var personRepository: PersonRepository,
         var springJAXBConverter: SpringJAXBConverter
-        ) {
+) {
 
-
-    fun saveAll(persons: List<Person>): String {
+    fun saveAll(persons: List<Person>) {
         personRepository.saveAll(persons)
-
-        return "Done"
     }
 
+    fun savePersonToDBFromXML(file: File): Boolean {
 
-//    @Bean
-//    fun savePersonToDBFromXML() {
-//        saveAll(springJAXBConverter.xmlToObject("src/main/resources/File/file.xml"))
-//    }
+        return try {
+            saveAll(springJAXBConverter.xmlToObject(file))
+            true
+
+        } catch (e: Exception) {
+            e.printStackTrace()
+            false
+        }
+    }
 
     fun getAll(): MutableList<Person> {
-       return personRepository.findAll()
+        return personRepository.findAll()
     }
-
-//    @Bean
-//    fun savePersonListToXML() {
-//        var personsdb = PersonsXml()
-//        var persons = Persons()
-//        persons.persons = getAll()
-//        persons.persons?.forEach {
-//            personsdb.persons?.add(it.toPersonXml())
-//        }
-//        springJAXBConverter.objectToXML("src/main/resources/File/XML.xml", personsdb)
-//    }
-
 }

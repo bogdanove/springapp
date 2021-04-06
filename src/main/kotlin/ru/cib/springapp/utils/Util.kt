@@ -9,25 +9,23 @@ import ru.cib.springapp.model.HobbyXml
 import ru.cib.springapp.model.PersonXml
 
 
-
 fun HobbyXml.toHobby() = Hobby().let {
-        it.complexity = this.complexity
-        it.hobby_name = this.hobby_name
-        it
+    it.complexity = this.complexity
+    it.hobby_name = this.hobby_name
+    it
+}
+
+
+fun PersonXml.toPerson() = Person().let {
+    it.name = this.name
+    it.birthday = this.birthday
+    var listHobbies = mutableListOf<Hobby>()
+    this.hobbies?.forEach { hobbyXml ->
+        listHobbies.add(hobbyXml.toHobby())
     }
-
-
-
-    fun PersonXml.toPerson() = Person().let {
-        it.name = this.name
-        it.birthday = this.birthday
-        var listHobbies = mutableListOf<Hobby>()
-        this.hobbies?.forEach { hobbyXml ->
-                listHobbies.add(hobbyXml.toHobby())
-            }
-        it.hobbies = listHobbies
-        it
-        }
+    it.hobbies = listHobbies
+    it
+}
 
 
 fun Hobby.toHobbyXml() = HobbyXml().let {

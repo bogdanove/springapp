@@ -6,7 +6,7 @@ import java.util.*
 import javax.xml.bind.annotation.*
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter
 
-@XmlRootElement(name ="person")
+@XmlRootElement(name = "person")
 @XmlAccessorType(XmlAccessType.FIELD)
 class PersonXml {
 

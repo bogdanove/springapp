@@ -4,7 +4,6 @@ package ru.cib.springapp.entity
 import javax.persistence.*
 
 
-
 @Entity
 @Table(name = "hobby")
 class Hobby {
