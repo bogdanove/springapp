@@ -3,9 +3,7 @@ package ru.cib.springapp.service
 
 import org.springframework.stereotype.Service
 import ru.cib.springapp.entity.Person
-import ru.cib.springapp.model.PersonXml
 import ru.cib.springapp.repository.PersonRepository
-import ru.cib.springapp.utils.toPersonXml
 import java.io.File
 
 
@@ -17,6 +15,10 @@ class PersonController(
 
     fun saveAll(persons: List<Person>) {
         personRepository.saveAll(persons)
+    }
+
+    fun save(person: Person) {
+        personRepository.save(person)
     }
 
     fun savePersonToDBFromXML(file: File): Boolean {
@@ -31,7 +33,12 @@ class PersonController(
         }
     }
 
+    fun findNullAccount(): Person {
+        return personRepository.findByAccountIsNull()
+    }
+
     fun getAll(): MutableList<Person> {
         return personRepository.findAll()
     }
+
 }

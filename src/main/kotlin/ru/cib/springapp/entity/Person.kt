@@ -17,10 +17,12 @@ class Person {
 
     var birthday: Date? = null
 
+    var account: Int? = null
+
     @OneToMany(mappedBy = "person", cascade = [CascadeType.ALL], orphanRemoval = true, fetch = FetchType.EAGER)
     var hobbies: MutableList<Hobby>? = null
 
     override fun toString(): String {
-        return "Id: $id, Name: $name, Birthday: $birthday, Hobby: $hobbies"
+        return "Id: $id, Name: $name, Birthday: $birthday, account: $account, Hobby: $hobbies"
     }
 }
