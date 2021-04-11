@@ -1,10 +1,12 @@
 package ru.cib.springapp.entity
 
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo
+import com.fasterxml.jackson.annotation.ObjectIdGenerators
 import java.util.*
 import javax.persistence.*
 
-
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator::class, property="@id", scope = Person::class)
 @Entity
 @Table(name = "person")
 class Person {
@@ -17,7 +19,7 @@ class Person {
 
     var birthday: Date? = null
 
-    var account: Int? = null
+    var account: Long? = null
 
     @OneToMany(mappedBy = "person", cascade = [CascadeType.ALL], orphanRemoval = true, fetch = FetchType.EAGER)
     var hobbies: MutableList<Hobby>? = null

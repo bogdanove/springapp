@@ -1,9 +1,11 @@
 package ru.cib.springapp.entity
 
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo
+import com.fasterxml.jackson.annotation.ObjectIdGenerators
 import javax.persistence.*
 
-
+@JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator::class, property="@id", scope = Hobby::class)
 @Entity
 @Table(name = "hobby")
 class Hobby {

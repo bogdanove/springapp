@@ -1,10 +1,7 @@
 package ru.cib.springapp.service.messaging
 
-import com.rabbitmq.client.ConnectionFactory
-import org.springframework.amqp.core.AmqpTemplate
-import org.springframework.amqp.core.BindingBuilder
-import org.springframework.amqp.core.Queue
-import org.springframework.amqp.core.TopicExchange
+
+import org.springframework.amqp.core.*
 import org.springframework.amqp.rabbit.core.RabbitTemplate
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter
 import org.springframework.context.annotation.Bean
@@ -13,19 +10,19 @@ import org.springframework.context.annotation.Configuration
 @Configuration
 class MessagingConfig {
 
-    val QUEUE: String = "queue"
-    val EXCHANGE: String = "exchange"
-    val ROUTING_KEY: String = "routingKey"
+    val queue: String = "queue"
+    val exchange: String = "exchange"
+    val routing_key: String = "routingKey"
 
 
     @Bean
-    fun queue() = Queue(QUEUE)
+    fun queue() = Queue(queue)
 
     @Bean
-    fun exchange() = TopicExchange(EXCHANGE)
+    fun exchange() = TopicExchange(exchange)
 
     @Bean
-    fun binding(queue: Queue, exchange: TopicExchange) = BindingBuilder.bind(queue).to(exchange).with(ROUTING_KEY)
+    fun binding(queue: Queue, exchange: TopicExchange): Binding? = BindingBuilder.bind(queue).to(exchange).with(routing_key)
 
     @Bean
     fun converters() = Jackson2JsonMessageConverter()

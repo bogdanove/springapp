@@ -1,16 +1,20 @@
 package ru.cib.springapp.service
 
 
+import org.springframework.context.annotation.Bean
 import org.springframework.stereotype.Service
 import ru.cib.springapp.entity.Person
 import ru.cib.springapp.repository.PersonRepository
+import ru.cib.springapp.service.messaging.MessageController
 import java.io.File
+
 
 
 @Service("db")
 class PersonController(
         var personRepository: PersonRepository,
-        var springJAXBConverter: SpringJAXBConverter
+        var springJAXBConverter: SpringJAXBConverter,
+        var messageController: MessageController
 ) {
 
     fun saveAll(persons: List<Person>) {
@@ -33,7 +37,7 @@ class PersonController(
         }
     }
 
-    fun findNullAccount(): Person {
+    fun findNullAccount(): MutableList<Person> {
         return personRepository.findByAccountIsNull()
     }
 
@@ -41,4 +45,11 @@ class PersonController(
         return personRepository.findAll()
     }
 
+    @Bean
+    fun checkingSearchNull() {
+        findNullAccount().forEach {
+            messageController.sendMessage(it)
+            Thread.sleep(2432)
+        }
+    }
 }
