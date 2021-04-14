@@ -22,7 +22,10 @@ class MessagingConfig {
     fun exchange() = TopicExchange(exchange)
 
     @Bean
-    fun binding(queue: Queue, exchange: TopicExchange): Binding? = BindingBuilder.bind(queue).to(exchange).with(routing_key)
+    fun binding(queue: Queue, exchange: TopicExchange) = BindingBuilder
+            .bind(queue)
+            .to(exchange)
+            .with(routing_key)
 
     @Bean
     fun converters() = Jackson2JsonMessageConverter()

@@ -8,10 +8,19 @@ import ru.cib.springapp.service.PersonController
 
 @EnableRabbit
 @Component
-class Consumer(var personController: PersonController) {
+class Consumer {
 
     @RabbitListener(queues = ["queue"])
-    fun consumeMessage(person: Person) {
-        personController.save(person)
+    fun consumeMessageFirst(person: Person): Person {
+        person.account = System.currentTimeMillis()
+        println("$person + Queue one")
+        return person
+    }
+
+    @RabbitListener(queues = ["queue"])
+    fun consumeMessageSecond(person: Person): Person {
+        person.account = System.currentTimeMillis()
+        println("$person + Queue two")
+        return person
     }
 }
