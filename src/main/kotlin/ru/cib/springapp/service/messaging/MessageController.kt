@@ -1,7 +1,7 @@
 package ru.cib.springapp.service.messaging
 
 import org.springframework.amqp.rabbit.core.RabbitTemplate
-import org.springframework.context.annotation.Bean
+import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Component
 import ru.cib.springapp.entity.Person
 import ru.cib.springapp.service.PersonController
@@ -13,7 +13,7 @@ class MessageController(
         var personController: PersonController
 ) {
 
-    @Bean
+    @Scheduled(fixedDelay = 1000, initialDelay = 500)
     fun checkingSendAndReceive() {
         personController.findNullAccount()?.forEach {
             sendMessage(it)
@@ -22,9 +22,8 @@ class MessageController(
     }
 
     fun sendMessage(person: Person): String {
-        println(person)
-        template.convertSendAndReceive(MessagingConfig().exchange, MessagingConfig().routing_key, person)
-        //personController.save(personUpd)
+        val personUpd = template.convertSendAndReceive("queue", person) as Person
+        personController.save(personUpd)
         return "Done!"
     }
 }

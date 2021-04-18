@@ -4,9 +4,7 @@ package ru.cib.springapp.service
 import org.springframework.stereotype.Service
 import ru.cib.springapp.entity.Person
 import ru.cib.springapp.repository.PersonRepository
-import ru.cib.springapp.service.messaging.MessageController
 import java.io.File
-
 
 
 @Service("db")
@@ -38,6 +36,7 @@ class PersonController(
     fun findNullAccount(): MutableList<Person> {
         return personRepository.findByAccountIsNull()
     }
+
 
     fun getAll(): MutableList<Person> {
         return personRepository.findAll()
