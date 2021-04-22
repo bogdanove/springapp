@@ -8,18 +8,14 @@ import ru.cib.springapp.utils.toPerson
 import java.io.File
 import java.io.FileOutputStream
 import java.io.FileReader
-import java.io.IOException
 import javax.xml.bind.JAXBContext
 import javax.xml.transform.stream.StreamResult
 
-@Service("converter")
-class SpringJAXBConverter {
-
+@Service
+class JAXBConverter {
 
     private val context = JAXBContext.newInstance(PersonsXml::class.java)
 
-
-    @Throws(IOException::class)
     fun objectToXML(fileName: String, persons: PersonsXml) {
 
         val marshaller = context.createMarshaller()

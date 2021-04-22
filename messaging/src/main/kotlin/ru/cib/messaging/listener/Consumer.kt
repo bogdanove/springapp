@@ -1,17 +1,21 @@
-package ru.cib.springapp.service.messaging
+package ru.cib.messaging.listener
 
 import org.springframework.amqp.rabbit.annotation.EnableRabbit
 import org.springframework.amqp.rabbit.annotation.RabbitListener
+import org.springframework.amqp.rabbit.core.RabbitTemplate
 import org.springframework.stereotype.Component
-import ru.cib.springapp.entity.Person
+import ru.cib.messaging.entity.Person
+
 
 @EnableRabbit
 @Component
-class Consumer {
+class Consumer(
+        private val template: RabbitTemplate
+) {
 
     @RabbitListener(queues = ["queue"])
-    fun consumeMessageFirst(person: Person): Person {
+    fun consumeMessageFirst(person: Person) {
         person.account = System.currentTimeMillis()
-        return person
+        template.convertAndSend("queue_response", person)
     }
 }

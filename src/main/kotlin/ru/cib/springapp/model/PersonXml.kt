@@ -1,7 +1,7 @@
 package ru.cib.springapp.model
 
 
-import ru.cib.springapp.service.DateAdapter
+import ru.cib.springapp.utils.DateAdapter
 import java.util.*
 import javax.xml.bind.annotation.*
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter

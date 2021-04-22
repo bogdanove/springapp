@@ -1,29 +1,28 @@
-package ru.cib.springapp.service.messaging
+package ru.cib.springapp.service
 
 import org.springframework.amqp.rabbit.core.RabbitTemplate
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Component
 import ru.cib.springapp.entity.Person
-import ru.cib.springapp.service.PersonController
+import ru.cib.springapp.repository.PersonRepository
 
 
 @Component
-class MessageController(
-        var template: RabbitTemplate,
-        var personController: PersonController
+class Tasks(
+       private val template: RabbitTemplate,
+       private val personRepository: PersonRepository
 ) {
 
     @Scheduled(fixedDelay = 1000, initialDelay = 500)
     fun checkingSendAndReceive() {
-        personController.findNullAccount()?.forEach {
+        personRepository.findByAccountIsNull()?.forEach {
             sendMessage(it)
             Thread.sleep(2432)
         }
     }
 
     fun sendMessage(person: Person): String {
-        val personUpd = template.convertSendAndReceive("queue", person) as Person
-        personController.save(personUpd)
+        template.convertAndSend("queue_response", person) as Person
         return "Done!"
     }
 }

@@ -1,4 +1,4 @@
-package ru.cib.springapp.service
+package ru.cib.springapp.utils
 
 import java.text.SimpleDateFormat
 import java.util.*
