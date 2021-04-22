@@ -13,8 +13,8 @@ class Consumer(
         private val template: RabbitTemplate
 ) {
 
-    @RabbitListener(queues = ["queue"])
-    fun consumeMessageFirst(person: Person) {
+    @RabbitListener(queues = ["queue_request"])
+    fun consumeMessageSecond(person: Person) {
         person.account = System.currentTimeMillis()
         template.convertAndSend("queue_response", person)
     }

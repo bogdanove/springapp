@@ -22,7 +22,7 @@ class Tasks(
     }
 
     fun sendMessage(person: Person): String {
-        template.convertAndSend("queue_response", person) as Person
+        template.convertAndSend("queue_request", person)
         return "Done!"
     }
 }
