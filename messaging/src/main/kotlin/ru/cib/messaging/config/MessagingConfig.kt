@@ -1,4 +1,4 @@
-package ru.cib.springapp.config
+package ru.cib.messaging.config
 
 
 import org.springframework.amqp.core.*
@@ -11,21 +11,22 @@ import org.springframework.context.annotation.Configuration
 @Configuration
 class MessagingConfig {
 
-    val queueResponse: String = "queue_response"
+    val queueRequest: String = "queue_request"
     val exchange: String = "exchange"
     val routingKey: String = "routingKey"
 
+
     @Bean
-    fun queueResponse() = Queue(queueResponse)
+    fun queueRequest() = Queue(queueRequest)
 
     @Bean
     fun exchange() = TopicExchange(exchange)
 
     @Bean
-    fun bindingResponse(queueResponse: Queue, exchange: TopicExchange): Binding? = BindingBuilder
-        .bind(queueResponse)
-        .to(exchange)
-        .with(routingKey)
+    fun bindingRequest(queueRequest: Queue, exchange: TopicExchange): Binding? = BindingBuilder
+            .bind(queueRequest)
+            .to(exchange)
+            .with(routingKey)
 
     @Bean
     fun converters() = Jackson2JsonMessageConverter()

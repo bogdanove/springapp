@@ -2,7 +2,6 @@ package ru.cib.springapp.listener
 
 import org.springframework.amqp.rabbit.annotation.EnableRabbit
 import org.springframework.amqp.rabbit.annotation.RabbitListener
-import org.springframework.amqp.rabbit.core.RabbitTemplate
 import org.springframework.stereotype.Component
 import ru.cib.springapp.entity.Person
 import ru.cib.springapp.repository.PersonRepository
